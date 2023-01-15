@@ -41,8 +41,10 @@ export const getSinglePlayerGame = async (req, res) => {
     const { uid } = req.params;
     try {
         const singlePlayerGame = await SinglePlayerGame.findById(uid);
+        console.log("singlePlayerGame: ", singlePlayerGame);
         res.status(200).json({ message: "Single player game retrieved successfully.", fen: singlePlayerGame.fen, player: singlePlayerGame.player, uid, history: singlePlayerGame.history, status: singlePlayerGame.status, turn: singlePlayerGame.turn });
     } catch (error) {
+        console.log(error);
         res.status(404).json({ message: error.message });
     }
 }
